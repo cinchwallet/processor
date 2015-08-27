@@ -1,0 +1,71 @@
+<project name="CinchWallet Switch" default="switch" basedir=".">
+
+    <property name="lib.dir" value="lib"/>
+
+	<property name="dist.dir" value="dist"/>
+
+	<path id="main.classpath">
+        <fileset dir="${lib.dir}">
+            <include name="*.jar"/>
+        </fileset>
+    </path>
+
+    <target name="clean">
+        <delete dir="build"/>
+		<delete dir="${dist.dir}" />
+    </target>
+
+    <target name="prepare">
+        <mkdir dir="${dist.dir}" />
+	</target>
+
+    <target name="compile" depends="prepare">
+        <mkdir dir="build/classes"/>
+        <javac srcdir="src" destdir="build/classes" debug="true">
+        <classpath refid="main.classpath"/>
+        </javac>
+
+    </target>
+
+    <target name="jar" depends="clean,compile">
+        <mkdir dir="build/jar"/>
+        <jar destfile="lib/CinchWalletCore.jar" basedir="build/classes"/>
+    </target>
+
+	<target name="copy-lib" depends="jar">
+      <copy todir="${build.lib}">
+        <fileset dir="${lib.dir}">
+          <include name="*.jar"/>
+        </fileset>
+      </copy>
+    </target>
+
+	<target name="copy-resource" depends="jar">
+		<copy todir="${dist.dir}/deploy">
+			<fileset dir="deploy"/>
+  	    </copy>
+
+		<copy todir="${dist.dir}/lib">
+			<fileset dir="lib"/>
+  	    </copy>
+
+		<copy todir="${dist.dir}/cfg">
+			<fileset dir="cfg"/>
+  	    </copy>
+
+		<copy todir="${dist.dir}/logs/q2">
+			<fileset dir="logs/q2"/>
+  	    </copy>
+
+		<copy todir="${dist.dir}">
+		  <fileset dir=".">
+			  <include name="*.bat"/>
+			  <include name="*.sh"/>
+	      </fileset>
+        </copy>
+
+	</target>
+
+	<target name="switch" depends="copy-resource"/>
+
+</project>
