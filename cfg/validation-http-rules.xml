@@ -1,0 +1,100 @@
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+<form-validation>
+	<global>
+		<validator name="required"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateRequired"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.required" />
+
+		<validator name="constant"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateConstant"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.constant" />
+
+		<validator name="dateValidation"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateDate"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.dateValidation" />
+
+		<validator name="optionalfield"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateOptionalConstant"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.optionalfield" />
+
+		<validator name="variableLengthfield"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateVariableLengthfield"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.optionalfield" />
+
+		<validator name="optionalAmount"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="optionalAmount"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.constant" />
+
+		<validator name="optionalDate"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="optionalDate"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.constant" />
+
+
+	</global>
+	<formset>
+		<form name="ValidateBean">
+<!--
+			<field property="oneincNumber" depends="required,variableLengthfield">
+				<var>
+					<var-name>length</var-name>
+					<var-value>19</var-value>
+				</var>
+				<arg key="oneincNumber" />
+			</field>
+-->
+			<field property="merchantID" depends="required,variableLengthfield">
+				<var>
+					<var-name>length</var-name>
+					<var-value>35</var-value>
+				</var>
+				<arg key="merchantID" />
+			</field>
+
+			<field property="terminalID" depends="required,variableLengthfield">
+				<var>
+					<var-name>length</var-name>
+					<var-value>16</var-value>
+				</var>
+				<arg key="terminalID" />
+			</field>
+
+			<field property="merchantTxnID" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>12</var-value>
+				</var>
+				<arg key="merchantTxnID" />
+			</field>
+
+			<field property="expiryDate" depends="optionalDate">
+				<var>
+					<var-name>datepattern</var-name>
+					<var-value>yyMM</var-value>
+				</var>
+				<arg key="expiryDate" />
+			</field>
+
+			<field property="transDate" depends="required">
+				<arg key="transDate" />
+			</field>
+
+		</form>
+
+	</formset>
+</form-validation>

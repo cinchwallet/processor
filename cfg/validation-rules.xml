@@ -1,0 +1,178 @@
+<!DOCTYPE form-validation PUBLIC
+     "-//Apache Software Foundation//DTD Commons Validator Rules Configuration 1.1//EN"
+     "http://jakarta.apache.org/commons/dtds/validator_1_1.dtd">
+<form-validation>
+	<global>
+		<validator name="required"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateRequired"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.required" />
+
+		<validator name="constant"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateConstant"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.constant" />
+
+		<validator name="enum"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateEnum"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.enum" />
+
+		<validator name="panValidation"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validatePan"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.panValidation" />
+
+		<validator name="dateValidation"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateDate"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.dateValidation" />
+
+		<validator name="optionalfield"
+			classname="com.oneinc.core.validation.GenericValidation"
+			method="validateOptionalConstant"
+			methodParams="java.lang.Object,org.apache.commons.validator.Field"
+			msg="errors.optionalfield" />
+
+	</global>
+	<formset>
+		<form name="ValidateBean">
+
+			<field property="mti" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>4</var-value>
+				</var>
+				<arg key="mti" />
+			</field>
+
+
+			<field property="processingCode" depends="required,constant,enum">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>6</var-value>
+				</var>
+				<var>
+					<var-name>enum</var-name>
+					<var-value>
+						300040
+					</var-value>
+				</var>
+				<arg key="processingCode" />
+			</field>
+
+			<field property="amountTransaction" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>16</var-value>
+				</var>
+				<arg key="amountTransaction" />
+			</field>
+
+			<field property="transmissionDate" depends="required,constant,dateValidation">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>10</var-value>
+				</var>
+				<var>
+					<var-name>datepattern</var-name>
+					<var-value>MMddHHmmss</var-value>
+				</var>
+				<arg key="transmissionDate" />
+			</field>
+
+			<field property="stan" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>12</var-value>
+				</var>
+				<arg key="stan" />
+			</field>
+
+			<field property="transmissionDateLocal" depends="required,constant,dateValidation">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>14</var-value>
+				</var>
+				<var>
+					<var-name>datepattern</var-name>
+					<var-value>yyyyMMddHHmmss</var-value>
+				</var>
+				<arg key="transmissionDateLocal" />
+			</field>
+
+			<field property="functionCode" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>3</var-value>
+				</var>
+				<arg key="functionCode" />
+			</field>
+
+			<field property="merchantCategoryCode" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>4</var-value>
+				</var>
+				<arg key="merchantCategoryCode" />
+			</field>
+
+			<field property="acquiringInstitutionIdentificationCode" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>11</var-value>
+				</var>
+				<arg key="acquiringInstitutionIdentificationCode" />
+			</field>
+
+			<field property="rrn" depends="optionalfield">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>12</var-value>
+				</var>
+				<arg key="rrn" />
+			</field>
+
+			<field property="tid" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<!-- should be AN16 -->
+					<var-value>11</var-value>
+				</var>
+				<arg key="tid" />
+			</field>
+
+			<field property="mid" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>11</var-value>
+				</var>
+				<arg key="mid" />
+			</field>
+
+			<field property="cardAcceptorCountryCode" depends="required,constant">
+				<var>
+					<var-name>constant</var-name>
+					<var-value>3</var-value>
+				</var>
+				<arg key="cardAcceptorCountryCode" />
+			</field>
+
+			<field property="oneincNumber" depends="required">
+				<arg key="oneincNumber" />
+			</field>
+
+			<field property="posDataCode" depends="required">
+				<arg key="posDataCode" />
+			</field>
+
+
+		</form>
+
+	</formset>
+</form-validation>
