@@ -1,0 +1,6 @@
+<log4j-manager logger="Q2"
+	class="com.cinchwallet.core.utils.CWLogger">
+	<property name="log4j-prop-file" value="cfg/log4j.xml" />
+	<property name="watch-time-millis" value="3600000" />
+</log4j-manager>
+

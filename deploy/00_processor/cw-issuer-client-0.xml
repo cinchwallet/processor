@@ -1,0 +1,17 @@
+<?xml version="1.0"?>
+<cw-issuer-client-0
+	class="com.cinchwallet.core.processor.communication.ServiceRequestorImpl"
+	logger="Q2_LOG">
+	<!-- Optional Property. Default value is: 10 -->
+	<property name="sessions" value="2" />
+	<!-- Mandatory Property. -->
+	<property name="request-dispatcher"
+		value="com.cinchwallet.core.processor.communication.http.HTTPRequestDispatcher" />
+	<!-- Mandatory Property. -->
+	<property name="endpoint-url"
+		value="http://localhost:8080/Issuer/process/issuer/api/" />
+	<!-- Audit Log -->
+	<property name="enable-audit-log" value="true"/>
+	<property name="audit-input-logger" value="AUDIT_LOGGER"/>
+	<property name="audit-output-logger" value="AUDIT_LOGGER"/>
+</cw-issuer-client-0>

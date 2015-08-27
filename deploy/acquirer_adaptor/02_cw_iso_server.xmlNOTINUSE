@@ -1,0 +1,28 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<server class="org.jpos.q2.iso.QServer" logger="Q2"
+	name="ISTS.ISOSERVER.VERSION1.0">
+	<attr name="port" type="java.lang.Integer">2070</attr>
+	<attr name="minSessions" type="java.lang.Integer">50</attr>
+	<attr name="maxSessions" type="java.lang.Integer">500</attr>
+
+	<channel class="org.jpos.iso.channel.NACChannel"
+		packager="org.jpos.iso.packager.GenericPackager" logger="Q2"
+		header="6000000000">
+		<property name="packager-config" value="cfg/iso2003binary.xml" />
+		<property name="packager-logger" value="Q2" />
+		<property name="packager-realm" value="RAP.ISTS.PACKAGER.VERSION1.0" />
+		<property name="enable-networkdump-log" value="true" />
+	</channel>
+
+	<request-listener name="ISTS.RAP.LISTENER.VERSION1.0"
+		class="com.oneinc.core.listener.AcquirerISOListener" logger="Q2">
+		<property name="space" value="acquirer-space" />
+		<property name="queue" value="acquirer-queue" />
+		<property name="message-specification"
+			value="com.oneinc.acquirer.msg.spec.OneIncSpecification" />
+		<property name="timeout" value="180000" />
+		<property name="sessions" value="100" />
+		<property name="throttler-value" value="50" />
+		<property name="source-type" value="device" />
+	</request-listener>
+</server>

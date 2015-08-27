@@ -1,0 +1,83 @@
+<?xml version='1.0'?>
+<cw-http-acquirer-version1.0-txnmgr
+	class="org.jpos.transaction.TransactionManager" logger="Q2">
+	<property name="sessions" value="2" />
+	<property name="space" value="acquirer-space" />
+	<property name="queue" value="acquirer-http-queue" />
+	<property name="debug" value="true" />
+	<property name="recover" value="false" />
+	<property name="message-specification-class" value="com.cinchwallet.acquirer.http.msg.spec.HttpSpecification" />
+
+<!--
+	<participant
+		class="com.cinchwallet.acquirer.http.validation.HttpValidation" logger="Q2"
+		realm="acquirer-init">
+		<property name="resource-file" value="cw-resource" />
+		<property name="validation-file" value="validation-http-rules.xml" />
+	</participant>
+-->
+
+	<participant class="com.cinchwallet.core.acquirer.participant.AcquirerInit"
+		logger="Q2" realm="acquirer-init">
+	</participant>
+
+	<participant class="com.cinchwallet.core.participant.DBLogger" logger="Q2"
+		realm="acquirer-database-logging">
+		<property name="leg" value="LEG_1" />
+	</participant>
+
+	<participant
+		class="com.cinchwallet.core.participant.ParticipantGroupSelector"
+		realm="acquirer-group-selector-version1.0">
+		<property name="BALIQ" value="Processor" />
+		<property name="ACTNL" value="Validation Processor" />
+		<property name="LOADV" value="Validation Processor" />
+		<property name="REDMP" value="Validation Processor" />
+		<property name="DACTN" value="Validation Processor" />
+		<property name="GET_USR" value="Processor" />
+		<property name="MINI_STMT" value="LocalProcessor" />
+	</participant>
+
+	<group name="Validation">
+		<participant
+			class="com.cinchwallet.core.participant.MerchantValidator" logger="Q2"
+			realm="acquirer-to-processor">
+		</participant>
+	</group>
+
+
+	<!-- Send to Processor	-->
+	<group name="Processor">
+		<participant
+			class="com.cinchwallet.core.participant.SendToIssuer" logger="Q2"
+			realm="i2c-processor">
+			<property name="service-requestor" value="cw-issuer-client-0" />
+			<property name="issuer-specification-class" value="com.cinchwallet.issuer.msg.spec.IssuerSpecification"/>
+            <property name="response-timeout" value="6000"/>
+            <property name="checkpoint" value="issuer"/>
+            <property name="saf-queue" value="cw-reversal-queue"/>
+		</participant>
+	</group>
+
+	<group name="LocalProcessor">
+		<participant
+			class="com.cinchwallet.core.participant.MiniStatementGenerator" logger="Q2"
+			realm="acquirer-to-processor">
+		</participant>
+	</group>
+
+
+	<participant class="com.cinchwallet.core.acquirer.participant.AcquirerEnd"
+		logger="Q2" realm="acquirer-end">
+	</participant>
+
+	<participant class="com.cinchwallet.core.participant.DBLogger" logger="Q2"
+		realm="acquirer-database-logging">
+		<property name="leg" value="LEG_4" />
+	</participant>
+
+	<participant class="com.cinchwallet.core.acquirer.participant.HTTPReply"
+		logger="Q2" realm="acquirer-reply">
+	</participant>
+
+</cw-http-acquirer-version1.0-txnmgr>

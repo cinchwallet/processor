@@ -1,0 +1,58 @@
+<?xml version='1.0'?>
+<oneinc-acquirer-version1.0-txnmgr
+	class="org.jpos.transaction.TransactionManager" logger="Q2">
+	<property name="sessions" value="2" />
+	<property name="space" value="acquirer-space" />
+	<property name="queue" value="acquirer-queue" />
+	<property name="debug" value="true" />
+	<property name="recover" value="false" />
+
+	<participant
+		class="com.oneinc.acquirer.validation.OneIncValidation" logger="Q2"
+		realm="acquirer-init">
+		<property name="resource-file" value="oneinc-resource" />
+		<property name="validation-file" value="validation-rules.xml" />
+	</participant>
+
+
+	<participant class="com.oneinc.core.acquirer.participant.AcquirerInit"
+		logger="Q2" realm="acquirer-init">
+		<property name="message-specification"
+			value="com.oneinc.acquirer.msg.spec.OneIncSpecification" />
+		<property name="authentication-required" value="true" />
+	</participant>
+
+	<participant class="com.oneinc.core.participant.DBLogger" logger="Q2"
+		realm="acquirer-database-logging">
+		<property name="leg" value="LEG_RQ" />
+	</participant>
+
+	<participant
+		class="com.oneinc.core.participant.OneIncNumberValidator" logger="Q2"
+		realm="acquirer-to-processor">
+	</participant>
+
+	<participant
+		class="com.oneinc.core.participant.MerchantValidator" logger="Q2"
+		realm="acquirer-to-processor">
+	</participant>
+
+	<participant
+			class="com.oneinc.core.participant.LoyaltyReader" logger="Q2"
+			realm="acquirer-to-processor">
+	</participant>
+
+	<participant class="com.oneinc.core.acquirer.participant.AcquirerEnd"
+		logger="Q2" realm="acquirer-end">
+	</participant>
+
+	<participant class="com.oneinc.core.participant.DBLogger" logger="Q2"
+		realm="acquirer-database-logging">
+		<property name="leg" value="LEG_RS" />
+	</participant>
+
+	<participant class="com.oneinc.core.acquirer.participant.ISOReply"
+		logger="Q2" realm="acquirer-reply">
+	</participant>
+
+</oneinc-acquirer-version1.0-txnmgr>
