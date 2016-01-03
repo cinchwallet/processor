@@ -26,6 +26,18 @@
 		</layout>
 	</appender>
 
+	<appender name="CWISSUER_LOGGER"
+		class="org.apache.log4j.RollingFileAppender">
+		<param name="File" value="./logs/cw-issuer/issuer.log" />
+		<param name="Append" value="true" />
+		<param name="MaxFileSize" value="50MB" />
+		<param name="MaxBackupIndex" value="20" />
+		<param name="Threshold" value="INFO" />
+		<layout class="org.apache.log4j.PatternLayout">
+			<param name="ConversionPattern"
+				value="%5p %d{dd MMM yyyy HH:mm:ss,SSS} (%F:%L) - %m%n" />
+		</layout>
+	</appender>
 
 
 	<appender name="TRANSACTIONLOGGER"
@@ -70,6 +82,11 @@
 	<category name="TRANSACTION_LOGGER">
 		<priority value="INFO" />
 		<appender-ref ref="TRANSACTIONLOGGER" />
+	</category>
+
+	<category name="CWISSUER_LOGGER">
+		<priority value="INFO" />
+		<appender-ref ref="CWISSUER_LOGGER" />
 	</category>
 
 

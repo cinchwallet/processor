@@ -10,8 +10,11 @@ import org.jpos.core.SimpleConfiguration;
 import org.jpos.iso.ISOUtil;
 
 import com.cinchwallet.acquirer.http.constant.HTTPResponseCode;
+import com.cinchwallet.acquirer.http.msg.Card;
 import com.cinchwallet.acquirer.http.msg.HttpRequest;
 import com.cinchwallet.acquirer.http.msg.HttpResponse;
+import com.cinchwallet.acquirer.http.msg.Profile;
+import com.cinchwallet.core.Cardholder;
 import com.cinchwallet.core.TransContext;
 import com.cinchwallet.core.TxnMsg;
 import com.cinchwallet.core.constant.CWConstant;
@@ -69,9 +72,30 @@ public class HttpSpecification implements IAcquirerSpec {
 	    acquirerIMF.setPan(httpMsg.getCardNumber());
 	    acquirerIMF.setDtExpiry(httpMsg.getExpiryDate());
 	    acquirerIMF.setDtTransaction(Utils.getTransactionDateTimeAsCurrentTime());
-	    acquirerIMF.setDtTransmission(httpMsg.getTransDate());
+	    acquirerIMF.setDtTransmission(httpMsg.getTxnDate());
 	    acquirerIMF.setMerchantCatCode(httpMsg.getMerchantCatCode());
 	    acquirerIMF.setTxnAmount(httpMsg.getTxnAmount());
+	    acquirerIMF.setTxnPoints(httpMsg.getTxnPoint());
+	    acquirerIMF.setNewCardNumber(httpMsg.getNewCardNumber());
+	    acquirerIMF.setPhoneNumber(httpMsg.getPhoneNumber());
+	    if(acquirerIMF.getTransactionType().equals(TransactionType.USR_REG.name())){
+		    Cardholder cardholder = new Cardholder();
+		    acquirerIMF.setCardholder(cardholder);
+		    
+		    cardholder.setFirstName(httpMsg.getProfile().getFirstName());
+		    cardholder.setLastName(httpMsg.getProfile().getLastName());
+		    cardholder.setPhoneNumber(httpMsg.getProfile().getPhoneNumber());
+		    cardholder.setEmail(httpMsg.getProfile().getEmail());
+		    cardholder.setDateOfBirth(httpMsg.getProfile().getDateOfBirth());
+		    cardholder.setGender(httpMsg.getProfile().getGender());
+		    cardholder.setAddress(httpMsg.getProfile().getAddress());
+		    cardholder.setState(httpMsg.getProfile().getState());
+		    cardholder.setCity(httpMsg.getProfile().getCity());
+		    cardholder.setState(httpMsg.getProfile().getState());
+		    cardholder.setCountry(httpMsg.getProfile().getCountry());
+	    	
+	    }
+	    
 	    //TODO - probably need to populate the pan number using track 2 data.
 
 	} catch (CWValidationException _ex) {
@@ -107,10 +131,35 @@ public class HttpSpecification implements IAcquirerSpec {
 		responseMsg.setCwTransID(acquirerIMF.getTxnId());
 		responseMsg.setCardHolderName(acquirerIMF.getCardHolderName());
 		//placeholder
-		if(acquirerIMF.getTransactionType().equals(TransactionType.BALIQ.name())){
-		    responseMsg.setPointBalance(100);
-		}
+	    responseMsg.setPointBalance(acquirerIMF.getPointBalance());
 		responseMsg.setTxns(acquirerIMF.getTxnList());
+
+		if(acquirerIMF.getCard()!=null){
+			Card card = new Card();
+			responseMsg.setCard(card);
+			card.setBalance(acquirerIMF.getCard().getBalance());
+			card.setCardNumber(acquirerIMF.getCard().getCardNumber());
+			card.setMembershipId(acquirerIMF.getCard().getMembershipId());
+			card.setPointExpireOn(acquirerIMF.getCard().getPointExpireOn());
+			card.setPoints(acquirerIMF.getCard().getPoints());
+			card.setStatus(acquirerIMF.getCard().getStatus());
+		}
+		
+		if(acquirerIMF.getCardholder()!=null){
+			Profile profile = new Profile();
+			responseMsg.setProfile(profile);
+			profile.setFirstName(acquirerIMF.getCardholder().getFirstName());
+			profile.setLastName(acquirerIMF.getCardholder().getLastName());
+			profile.setEmail(acquirerIMF.getCardholder().getEmail());
+			profile.setPhoneNumber(acquirerIMF.getCardholder().getPhoneNumber());
+			profile.setGender(acquirerIMF.getCardholder().getGender());
+			profile.setDateOfBirth(acquirerIMF.getCardholder().getDateOfBirth());
+			profile.setAddress(acquirerIMF.getCardholder().getAddress());
+			profile.setCity(acquirerIMF.getCardholder().getCity());
+			profile.setState(acquirerIMF.getCardholder().getState());
+			profile.setZip(acquirerIMF.getCardholder().getZip());
+			profile.setCountry(acquirerIMF.getCardholder().getCountry());
+		}
 	    }
 
 	} catch (Exception _ex) {
@@ -138,7 +187,9 @@ public class HttpSpecification implements IAcquirerSpec {
 	    String messageErrorCode = responseValues[0];
 	    String responseCode = responseValues[1];
 	    String messageDisplay = responseValues[2];
-	    acquirerIMF.setDisplayMessage(messageDisplay);
+	    if(acquirerIMF.getDisplayMessage()==null){
+	    	acquirerIMF.setDisplayMessage(messageDisplay);	
+	    }
 	    acquirerIMF.setReasonCode(messageErrorCode);
 	    acquirerIMF.setResultCd(responseCode);
 	} catch (Exception _ex) {

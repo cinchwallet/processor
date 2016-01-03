@@ -3,19 +3,58 @@ package com.cinchwallet.acquirer.http.msg;
 import java.util.Date;
 
 public class HttpRequest {
+	//common fields
     private String merchantID;
     private String terminalID;
     private String merchantTxnID;
     private String cardNumber;
-    private Date   regDate;
-    private String expiryDate;
-    private Date   transDate;
-    private String track2Data;
+    private Date   txnDate;
     private String merchantCatCode;
     private String txnType;
     private Double txnAmount;
 
-    public String getMerchantID() {
+    private String expiryDate;
+    private String track2Data;
+    
+    //add point or burn point
+    private Integer txnPoint;
+    // cardprofile registration specific fields
+    private Profile profile;
+    //txn history specific field
+    private Integer noOfTrans;
+    //reissue card
+    private String newCardNumber;
+    //loyalty by phone number
+    private String phoneNumber;
+    
+    private String userName;
+    private String password;
+
+    public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	public String getUserName() {
+		return userName;
+	}
+
+	public void setUserName(String userName) {
+		this.userName = userName;
+	}
+
+	public String getPassword() {
+		return password;
+	}
+
+	public void setPassword(String password) {
+		this.password = password;
+	}
+
+	public String getMerchantID() {
         return merchantID;
     }
 
@@ -47,14 +86,6 @@ public class HttpRequest {
         this.cardNumber = cardNumber;
     }
 
-    public Date getRegDate() {
-        return regDate;
-    }
-
-    public void setRegDate(Date regDate) {
-        this.regDate = regDate;
-    }
-
     public String getExpiryDate() {
         return expiryDate;
     }
@@ -63,15 +94,15 @@ public class HttpRequest {
         this.expiryDate = expiryDate;
     }
 
-    public Date getTransDate() {
-        return transDate;
-    }
+    public Date getTxnDate() {
+		return txnDate;
+	}
 
-    public void setTransDate(Date transDate) {
-        this.transDate = transDate;
-    }
+	public void setTxnDate(Date txnDate) {
+		this.txnDate = txnDate;
+	}
 
-    public String getTrack2Data() {
+	public String getTrack2Data() {
         return track2Data;
     }
 
@@ -103,19 +134,55 @@ public class HttpRequest {
         this.txnAmount = txnAmount;
     }
 
-    @Override
+    public Integer getTxnPoint() {
+		return txnPoint;
+	}
+
+	public void setTxnPoint(Integer txnPoint) {
+		this.txnPoint = txnPoint;
+	}
+
+	public Profile getProfile() {
+		return profile;
+	}
+
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+
+	public Integer getNoOfTrans() {
+		return noOfTrans;
+	}
+
+	public void setNoOfTrans(Integer noOfTrans) {
+		this.noOfTrans = noOfTrans;
+	}
+	
+
+	public String getNewCardNumber() {
+		return newCardNumber;
+	}
+
+	public void setNewCardNumber(String newCardNumber) {
+		this.newCardNumber = newCardNumber;
+	}
+
+	@Override
     public String toString() {
 	StringBuffer valueBuff = new StringBuffer();
 	valueBuff.append(txnType==null?"":"txn type=" + txnType);
 	valueBuff.append(merchantID==null?"":", merchantID=" + merchantID);
 	valueBuff.append(terminalID==null?"":", terminalID=" + terminalID);
 	valueBuff.append(merchantTxnID==null?"":", merchantTxnID=" + merchantTxnID);
-	valueBuff.append(transDate ==null?"":", transactionDate=" + transDate);
-	valueBuff.append(regDate ==null?"":", registrationDate=" + regDate);
+	valueBuff.append(txnDate ==null?"":", transactionDate=" + txnDate);
 	valueBuff.append(expiryDate==null?"":", expiryDate=" + expiryDate);
 	valueBuff.append(track2Data==null?"":", track2Data=" + track2Data);
 	valueBuff.append(merchantCatCode==null?"":", merchantCategoryCode=" + merchantCatCode);
 	valueBuff.append(txnAmount==null?"":", txnAmount=" + txnAmount);
+	valueBuff.append(txnPoint==null?"":", txnPoint=" + txnPoint);
+	valueBuff.append(profile==null?"":", profile=" + profile);
+	valueBuff.append(noOfTrans==null?"":", noOfTrans=" + noOfTrans);
+	valueBuff.append(newCardNumber==null?"":", newCardNumber=" + newCardNumber);
 	return valueBuff.toString();
     }
 

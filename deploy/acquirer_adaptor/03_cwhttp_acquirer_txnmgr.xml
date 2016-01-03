@@ -29,13 +29,17 @@
 	<participant
 		class="com.cinchwallet.core.participant.ParticipantGroupSelector"
 		realm="acquirer-group-selector-version1.0">
-		<property name="BALIQ" value="Processor" />
-		<property name="ACTNL" value="Validation Processor" />
-		<property name="LOADV" value="Validation Processor" />
-		<property name="REDMP" value="Validation Processor" />
+		<property name="USR_REG" value="Validation Processor" />
+		<property name="BALIQ" value="Validation Processor" />
+		<property name="USR_PROFILE" value="Validation Processor" />
+		<property name="EARN_POINT" value="Validation PointValidation Processor" />
+		<property name="BURN_POINT" value="Validation Processor" />
+		<property name="ADD_POINT" value="Validation Processor" />
+		<property name="REISSUE_CARD" value="Validation Processor" />
+		<property name="RVSAL" value="Validation Processor" />
+		<property name="VOIDX" value="Validation Processor" />
+		<property name="TXN_HSTRY" value="LocalProcessor" />
 		<property name="DACTN" value="Validation Processor" />
-		<property name="GET_USR" value="Processor" />
-		<property name="MINI_STMT" value="LocalProcessor" />
 	</participant>
 
 	<group name="Validation">
@@ -44,6 +48,14 @@
 			realm="acquirer-to-processor">
 		</participant>
 	</group>
+
+	<group name="PointValidation">
+		<participant
+			class="com.cinchwallet.core.participant.PointCalculator" logger="Q2"
+			realm="acquirer-to-processor">
+		</participant>
+	</group>
+	
 
 
 	<!-- Send to Processor	-->

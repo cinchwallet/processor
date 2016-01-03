@@ -9,7 +9,7 @@
 		value="com.cinchwallet.core.processor.communication.http.HTTPRequestDispatcher" />
 	<!-- Mandatory Property. -->
 	<property name="endpoint-url"
-		value="http://localhost:8080/Issuer/process/issuer/api/" />
+		value="http://localhost:8080/Issuer/process/loyalty/api/" />
 	<!-- Audit Log -->
 	<property name="enable-audit-log" value="true"/>
 	<property name="audit-input-logger" value="AUDIT_LOGGER"/>

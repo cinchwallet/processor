@@ -50,7 +50,7 @@ public class ISOSpecification implements IAcquirerSpec {
     static {
 	responseMTIMap.put(ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_REQUEST_MTI, ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_RESPONSE_MTI);
 
-	txnTypeMap.put(ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_REQUEST_MTI + ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_PC, TransactionType.LOY_NO_IQ);
+	//txnTypeMap.put(ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_REQUEST_MTI + ISO8583_2003_SpecConstant.LOYALTY_NUMBER_INQUIRY_PC, TransactionType.LOY_NO_IQ);
     }
 
     /**

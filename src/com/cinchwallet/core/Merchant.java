@@ -4,6 +4,11 @@ public class Merchant {
 
     String merchantId;
     String merchantName;
+    
+    //for store
+    String storeId;
+    String storeName;
+    
     boolean isActive;
     public String getMerchantId() {
         return merchantId;
@@ -23,6 +28,19 @@ public class Merchant {
     public void setActive(boolean isActive) {
         this.isActive = isActive;
     }
+	public String getStoreId() {
+		return storeId;
+	}
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
+	}
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
 
+    
 
 }

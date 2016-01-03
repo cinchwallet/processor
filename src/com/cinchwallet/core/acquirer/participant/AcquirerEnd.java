@@ -65,7 +65,7 @@ public class AcquirerEnd implements AbortParticipant, Configurable {
 	    context.checkPoint(this.getClass().getSimpleName() + ":" + "prepare");
 	    IAcquirerSpec spec = context.getAcquirerSpec();
 	    spec.populateAcquirerResponseIMF(context);
-	    spec.populateAcquirerResponse(context);
+	    //spec.populateAcquirerResponse(context);
 	} catch (Exception ex) {
 	    CWLogger.appLog.error(ex.toString(), ex);
 	    context.setIRC(IMFResponseCodes.SYSTEM_ERROR);

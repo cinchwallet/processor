@@ -6,7 +6,9 @@ import org.apache.commons.httpclient.Header;
 
 public class HTTPResponse implements Serializable {
 
-    private String responseBody;
+	private static final long serialVersionUID = 1L;
+
+	private String responseBody;
     private long contentLength;
     private int statusCode;
     private String statusText;

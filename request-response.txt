@@ -1,0 +1,78 @@
+Endpoint base URL: services/loyalty/api/v1.0
+
+GET - 
+serverstatus
+{"respCode":"0000","reasonCode":"0000","respMsg":"Server is up and running"}
+
+Registration without card/invalid card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"4375674812346789","txnDate":"2015-08-17T18:18:21.305+08:00","profile":{"firstName":"Manoj","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"9810403543","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","zip":"201301","country":"India"}}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Card not found, registration done on Phone number only.","cwTransID":"000000225211","profile":{"firstName":"Manoj","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"9810403543","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
+Registration with card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00","profile":{"firstName":"MKS","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"8010551710","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","zip":"201301","country":"India"}}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000225411","card":{"points":230,"membershipId":"155770661"},"profile":{"firstName":"MKS","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"8010551710","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
+Registraton with Phone number only
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","txnDate":"2015-08-17T18:18:21.305+08:00","profile":{"firstName":"Rahul","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"9711125129","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","zip":"201301","country":"India"}}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000225511","profile":{"firstName":"Rahul","lastName":"Singh","gender":"M","dateOfBirth":"1982-06-29","phoneNumber":"9711125129","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
+userprofile by card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000245211","profile":{"firstName":"MKS","lastName":"Singh","phoneNumber":"8010551710","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
+userprofile by phone
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","phoneNumber":"9810403543","txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000245311","profile":{"firstName":"Manoj","lastName":"Singh","phoneNumber":"9810403543","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
+earn point by card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnAmount":120, "txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000256211","pointBalance":360}
+
+earn point by phone
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","phoneNumber":"9711125129","txnAmount":12, "txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000285311","pointBalance":132}
+
+
+burn point by card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00","txnPoint":120}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000256511","pointBalance":160}
+
+burn point by phone
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","phoneNumber":"9711125129","txnPoint":20, "txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000285511","pointBalance":92}
+
+add point by card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00","txnPoint":30}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000256711","pointBalance":300}
+
+add point by Phone
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","phoneNumber":"9711125129","txnPoint":40, "txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000285611","pointBalance":132}
+
+
+reissue card
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00","newCardNumber":"8888880018904570"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000256811"}
+
+
+deactivate
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904570","txnDate":"2015-08-17T18:18:21.305+08:00"}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000257011","prepaidbalance":0.0}
+
+
+FOLLOWING NEEDS TO BE CHECKED
+reverse
+same request at reverse endpoint
+
+void
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"4375674812346789","txnAmount":120, "txnDate":"2015-08-17T18:18:21.305+08:00","cwTxnID":"4375674812346123"}
+
+
+txnhistory
+{"merchantID":"20130603000","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnDate":"2015-08-17T18:18:21.305+08:00","noOfTrans":10}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Txn completed successfully","cwTransID":"000000165611","txns":[{"date":"07/12/2015","merchantName":"10000000001","amount":"120.0"},{"date":"07/12/2015","merchantName":"10000000001","amount":"120.0"},{"date":"07/12/2015","merchantName":"10000000001","amount":"120.0"},{"date":"07/12/2015","merchantName":"10000000001","amount":"120.0"},{"date":"07/12/2015","merchantName":"10000000001","amount":"120.0"}]}
+
+
+
+
+

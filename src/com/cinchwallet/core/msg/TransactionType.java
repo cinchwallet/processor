@@ -14,7 +14,7 @@ import com.cinchwallet.core.constant.SwitchConstants;
  *
  */
 public enum TransactionType {
-    BALIQ, ACTVN, RVSAL, REDMP_VOID, LOADF, LOADF_VOID, LOADV, REDMP, ACTNL, VOIDX, DACTN, ACTVN_RVSAL, LOADF_RVSAL, LOADV_RVSAL, REDMP_RVSAL, ACTNL_RVSAL, VOIDX_RVSAL, DACTN_RVSAL, LOY_NO_IQ, USR_REG, GET_USR, MINI_STMT, UNKNOWN;
+    BALIQ, RVSAL, VOIDX, DACTN, USR_REG, USR_PROFILE, EARN_POINT, BURN_POINT, ADD_POINT, REISSUE_CARD, TXN_HSTRY, UNKNOWN;
 
     /**
      * Returns the reversal transaction name for the given transaction name.
@@ -26,7 +26,7 @@ public enum TransactionType {
      *                reversal transaction name is required.
      * @return reversal transaction type.
      */
-    public static TransactionType getReversalTxnType(TransactionType originalTxnType) {
+    /*public static TransactionType getReversalTxnType(TransactionType originalTxnType) {
 	switch (originalTxnType) {
 	case ACTVN:
 	    return ACTVN_RVSAL;
@@ -45,7 +45,7 @@ public enum TransactionType {
 	default:
 	    return UNKNOWN;
 	}
-    }
+    }*/
 
     /**
      * Checks if reversal of the given transaction is allowed/required.

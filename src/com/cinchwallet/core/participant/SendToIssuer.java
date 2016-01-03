@@ -51,17 +51,18 @@ public class SendToIssuer implements TransactionParticipant, Configurable {
 	    serviceRequestor = (IServiceRequestor) NameRegistrar.get(serviceRequestorName);
 	    HTTPRequest request = (HTTPRequest) context.getProcessorRequest();
 	    try {
-		CWLogger.appLog.info("Request sent : " + request.getScriptName() + " - " + request.getRequestBody());
-		// Get the response from PiaoWuTong
+		CWLogger.cwIssuerLog.info("Request sent : " + request.getScriptName() + " - " + request.getRequestBody());
+
 		responseCP = serviceRequestor.request(request, timeout);
+		//responseCP = getLocalResponse();
 		response = (HTTPResponse) responseCP;
-		CWLogger.appLog.info("Response received : " + response.getResponseBody().toString());
+		CWLogger.cwIssuerLog.info("Response received : " + response.getResponseBody().toString());
 		context.setProcessorResponse(response);
 
 		//capturing issuer fields
 		issuerSpec.populateProcessorResponseIMF(context);
 	    } catch (Exception _ex) {
-		CWLogger.appLog.error("Issuer failed to respond.");
+		CWLogger.cwIssuerLog.error("Issuer failed to respond.");
 		context.setIRC(IMFResponseCodes.PROCESSOR_NO_RESPONSE);
 		TxnMsg aquirerRequestIMF = context.getAcquirerIMF();
 		if (TransactionType.isReversalAllowed(aquirerRequestIMF.getTransactionTypeEnum())) {
@@ -71,7 +72,7 @@ public class SendToIssuer implements TransactionParticipant, Configurable {
 		return ABORTED | NO_JOIN;
 	    }
 	} catch (Exception e) {
-	    CWLogger.appLog.error(e.getMessage(), e);
+	    CWLogger.cwIssuerLog.error(e.getMessage(), e);
 	    context.setIRC(IMFResponseCodes.SYSTEM_ERROR);
 	    return ABORTED | NO_JOIN;
 	}
@@ -107,6 +108,14 @@ public class SendToIssuer implements TransactionParticipant, Configurable {
 	//reversalTansactionContext.getProcessorIMF().setOriginalKargoTxnID(context.getProcessorIMF().getTxnId());
 	reversalTansactionContext.setProcessorRequest(context.getProcessorRequest());
 	return reversalTansactionContext;
+    }
+    
+    
+    private HTTPResponse getLocalResponse(){
+    	HTTPResponse response = new HTTPResponse();
+    	response.setStatusCode(200);
+    	response.setResponseBody("{\"responseCode\":\"0000\",\"responseMsg\":\"Approved\",\"pointsAvailable\":40,\"pointsExpireOn\":\"2015-11-25\"}");
+    	return response;
     }
 
 }

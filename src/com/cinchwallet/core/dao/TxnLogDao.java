@@ -10,6 +10,8 @@ import java.util.Date;
 import java.util.List;
 
 import com.cinchwallet.acquirer.http.msg.TxnHistory;
+import com.cinchwallet.core.Card;
+import com.cinchwallet.core.Cardholder;
 import com.cinchwallet.core.Merchant;
 import com.cinchwallet.core.exception.SwitchException;
 import com.cinchwallet.core.utils.DBConnection;
@@ -82,7 +84,13 @@ public class TxnLogDao {
     private String             loyaltyNumber;
     private Double             balance;
     private Integer            pointBalance;
+    private String            pointExpireOn;
     private String             cardHolderName;
+	private Cardholder cardholder;
+	private Card card;
+	private Integer txnPoints;
+	private String newCardNumber;
+	private String phoneNumber;
 
     public static final String INSERT_STR     = "INSERT INTO TXN_LOG( " + "  txn_id, leg, pan, pan_hint, txn_amount," + "  dt_transmission, stan,dt_transaction,approval_cd,reason_cd," + "  result_cd,tid,mid,transaction_type) " + "  VALUES"
 	                                              + " (?,?,?,?,?," + " ?,?,?,?,?," + " ?,?,?,?" + ")";
@@ -598,8 +606,16 @@ public class TxnLogDao {
     public void setCardHolderName(String cardHolderName) {
 	this.cardHolderName = cardHolderName;
     }
+    
+	public String getPointExpireOn() {
+		return pointExpireOn;
+	}
 
-    public List<TxnHistory> getMiniStmt() {
+	public void setPointExpireOn(String pointExpireOn) {
+		this.pointExpireOn = pointExpireOn;
+	}
+
+	public List<TxnHistory> getMiniStmt() {
 
 	Connection lConnection = null;
 	PreparedStatement lPreparedStatement = null;
@@ -633,4 +649,45 @@ public class TxnLogDao {
 	return list;
     }
 
+	public Cardholder getCardholder() {
+		return cardholder;
+	}
+
+	public void setCardholder(Cardholder cardholder) {
+		this.cardholder = cardholder;
+	}
+
+	public Integer getTxnPoints() {
+		return txnPoints;
+	}
+
+	public void setTxnPoints(Integer txnPoints) {
+		this.txnPoints = txnPoints;
+	}
+
+	public String getNewCardNumber() {
+		return newCardNumber;
+	}
+
+	public void setNewCardNumber(String newCardNumber) {
+		this.newCardNumber = newCardNumber;
+	}
+
+	public Card getCard() {
+		return card;
+	}
+
+	public void setCard(Card card) {
+		this.card = card;
+	}
+
+	public String getPhoneNumber() {
+		return phoneNumber;
+	}
+
+	public void setPhoneNumber(String phoneNumber) {
+		this.phoneNumber = phoneNumber;
+	}
+
+	
 }

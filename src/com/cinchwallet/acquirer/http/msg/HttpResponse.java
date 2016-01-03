@@ -15,8 +15,18 @@ public class HttpResponse {
     private String cwTransID;
     private String cardHolderName;
     private Double prepaidbalance;
+    private String pointExpireOn;
     private Integer pointBalance;
     private List<TxnHistory> txns;
+    private Card card;
+    private Profile profile;
+    
+    //for webpos login
+    private String merchantId;
+    private String storeId;
+    private String merchantName;
+    private String storeName;
+    
     public String getMerchantTxnID() {
         return merchantTxnID;
     }
@@ -78,11 +88,58 @@ public class HttpResponse {
         this.txns = txns;
     }
 
-    @Override
-    public String toString() {
-	StringBuffer valueBuff = new StringBuffer();
-	valueBuff.append(merchantTxnID==null?"":", merchantTxnID=" + merchantTxnID);
-	return valueBuff.toString();
-    }
+    public Card getCard() {
+		return card;
+	}
+	public void setCard(Card card) {
+		this.card = card;
+	}
+	public String getPointExpireOn() {
+		return pointExpireOn;
+	}
+	public void setPointExpireOn(String pointsExpireOn) {
+		this.pointExpireOn = pointsExpireOn;
+	}
+	
+	public Profile getProfile() {
+		return profile;
+	}
+	public void setProfile(Profile profile) {
+		this.profile = profile;
+	}
+	
+	public String getMerchantId() {
+		return merchantId;
+	}
+	public void setMerchantId(String merchantId) {
+		this.merchantId = merchantId;
+	}
+	public String getStoreId() {
+		return storeId;
+	}
+	public void setStoreId(String storeId) {
+		this.storeId = storeId;
+	}
+	public String getMerchantName() {
+		return merchantName;
+	}
+	public void setMerchantName(String merchantName) {
+		this.merchantName = merchantName;
+	}
+	public String getStoreName() {
+		return storeName;
+	}
+	public void setStoreName(String storeName) {
+		this.storeName = storeName;
+	}
+	@Override
+	public String toString() {
+		return "HttpResponse [merchantTxnID=" + merchantTxnID + ", respCode=" + respCode + ", reasonCode=" + reasonCode
+				+ ", respMsg=" + respMsg + ", expirationDate=" + expirationDate + ", cwTransID=" + cwTransID
+				+ ", cardHolderName=" + cardHolderName + ", prepaidbalance=" + prepaidbalance + ", pointExpireOn="
+				+ pointExpireOn + ", pointBalance=" + pointBalance + ", txns=" + txns + ", card=" + card + ", profile="
+				+ profile + ", merchantId=" + merchantId + ", storeId=" + storeId + ", merchantName=" + merchantName
+				+ ", storeName=" + storeName + "]";
+	}
 
 }
