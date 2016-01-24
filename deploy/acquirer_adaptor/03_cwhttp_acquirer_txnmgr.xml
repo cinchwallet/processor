@@ -32,6 +32,7 @@
 		<property name="USR_REG" value="Validation Processor" />
 		<property name="BALIQ" value="Validation Processor" />
 		<property name="USR_PROFILE" value="Validation Processor" />
+		<property name="UPDATE_PROFILE" value="Validation Processor" />
 		<property name="EARN_POINT" value="Validation PointValidation Processor" />
 		<property name="BURN_POINT" value="Validation Processor" />
 		<property name="ADD_POINT" value="Validation Processor" />

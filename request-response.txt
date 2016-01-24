@@ -24,6 +24,11 @@ userprofile by phone
 {"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","phoneNumber":"9810403543","txnDate":"2015-08-17T18:18:21.305+08:00"}
 {"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000245311","profile":{"firstName":"Manoj","lastName":"Singh","phoneNumber":"9810403543","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
 
+updateprofile
+http://localhost:7001/cinchwallet/services/loyalty/api/v1.0/updateprofile
+{"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8411808093854927","txnDate":"2015-08-17T18:18:21.305+08:00","profile":{"firstName":"rohit","lastName":"Singh","membershipId":"6945141"}}
+{"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000245311","profile":{"firstName":"Manoj","lastName":"Singh","phoneNumber":"9810403543","email":"m.manojsingh@gmail.com","address":"Noida","city":"Noida","state":"UP","country":"India"}}
+
 earn point by card
 {"merchantID":"10000000001","terminalID":"20130603000","merchantTxnID":"201508101781","cardNumber":"8888880018904563","txnAmount":120, "txnDate":"2015-08-17T18:18:21.305+08:00"}
 {"merchantTxnID":"201508101781","respCode":"0000","reasonCode":"0000","respMsg":"Approved","cwTransID":"000000256211","pointBalance":360}

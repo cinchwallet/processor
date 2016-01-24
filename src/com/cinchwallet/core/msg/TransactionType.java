@@ -14,7 +14,7 @@ import com.cinchwallet.core.constant.SwitchConstants;
  *
  */
 public enum TransactionType {
-    BALIQ, RVSAL, VOIDX, DACTN, USR_REG, USR_PROFILE, EARN_POINT, BURN_POINT, ADD_POINT, REISSUE_CARD, TXN_HSTRY, UNKNOWN;
+    BALIQ, RVSAL, VOIDX, DACTN, USR_REG, USR_PROFILE, UPDATE_PROFILE, EARN_POINT, BURN_POINT, ADD_POINT, REISSUE_CARD, TXN_HSTRY, UNKNOWN;
 
     /**
      * Returns the reversal transaction name for the given transaction name.

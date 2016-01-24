@@ -16,7 +16,15 @@ public class Profile {
     private String state;
     private String zip;
     private String country;
-    public String getFirstName() {
+    private String membershipId;
+    
+    public String getMembershipId() {
+		return membershipId;
+	}
+	public void setMembershipId(String membershipId) {
+		this.membershipId = membershipId;
+	}
+	public String getFirstName() {
         return firstName;
     }
     public void setFirstName(String firstName) {

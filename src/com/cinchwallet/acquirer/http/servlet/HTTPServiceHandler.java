@@ -87,6 +87,26 @@ public class HTTPServiceHandler {
 		}
 		return responseMsg;
 	}
+	
+	@POST
+	@Path("/updateprofile")
+	@Consumes(MediaType.APPLICATION_JSON)
+	@Produces(MediaType.APPLICATION_JSON)
+	public HttpResponse updateProfile(HttpRequest httpMsg) {
+		HttpResponse responseMsg = null;
+		try {
+			httpMsg.setTxnType(TransactionType.UPDATE_PROFILE.name());
+			// Log the incoming request
+			CWLogger.httpLog.info("Request received : " + httpMsg.toString());
+			responseMsg = getResponse(httpMsg);
+		} catch (Exception e) {
+			CWLogger.httpLog.error("Request processing failed : " + e.getMessage());
+			responseMsg = getExceptionResponse();
+			CWLogger.httpLog.info("Response send : " + responseMsg.toString());
+		}
+		return responseMsg;
+	}
+
 
 	
 	@POST

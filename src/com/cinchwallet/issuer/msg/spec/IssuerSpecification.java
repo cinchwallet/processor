@@ -56,7 +56,8 @@ public class IssuerSpecification implements IProcessorSpecification {
 		if(processorRequestIMF.getPhoneNumber()!=null){
 			request.append(",\"phoneNumber\":\"").append(processorRequestIMF.getPhoneNumber()).append("\"");
 		}
-		if (processorRequestIMF.getTransactionType().equals(TransactionType.USR_REG.name())) {
+		if (processorRequestIMF.getTransactionType().equals(TransactionType.USR_REG.name()) ||
+				processorRequestIMF.getTransactionType().equals(TransactionType.UPDATE_PROFILE.name())) {
 			request.append(",\"cardHolder\":");
 			request.append("{\"firstName\":\"").append(processorRequestIMF.getCardholder().getFirstName()).append("\"");
 			request.append(",\"lastName\":\"").append(processorRequestIMF.getCardholder().getLastName()).append("\"");
@@ -136,7 +137,10 @@ public class IssuerSpecification implements IProcessorSpecification {
 			// httpRequest.setScriptName(IssuerConstant.TxnType.txnhistory.name());
 		} else if (processorRequestIMF.getTransactionType().equals(TransactionType.DACTN.toString())) {
 			httpRequest.setScriptName(IssuerConstant.TxnType.DEACTIVATE.getEndPoint());
-		}
+		}else if (processorRequestIMF.getTransactionType().equals(TransactionType.UPDATE_PROFILE.toString())) {
+			httpRequest.setScriptName(IssuerConstant.TxnType.UPDATEPROFILE.getEndPoint() + "/"
+					+ processorRequestIMF.getCardholder().getMembershipId());
+		} 
 	}
 
 	@Override
@@ -159,6 +163,7 @@ public class IssuerSpecification implements IProcessorSpecification {
 			Cardholder cardholder = new Cardholder();
 			processorRequestIMF.setCardholder(cardholder);
 			
+			cardholder.setMembershipId(response.getCardHolder().getMembershipId());
 			cardholder.setFirstName(response.getCardHolder().getFirstName());
 			cardholder.setLastName(response.getCardHolder().getLastName());
 			cardholder.setEmail(response.getCardHolder().getEmail());

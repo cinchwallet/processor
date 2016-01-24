@@ -78,10 +78,10 @@ public class HttpSpecification implements IAcquirerSpec {
 	    acquirerIMF.setTxnPoints(httpMsg.getTxnPoint());
 	    acquirerIMF.setNewCardNumber(httpMsg.getNewCardNumber());
 	    acquirerIMF.setPhoneNumber(httpMsg.getPhoneNumber());
-	    if(acquirerIMF.getTransactionType().equals(TransactionType.USR_REG.name())){
+	    if(acquirerIMF.getTransactionType().equals(TransactionType.USR_REG.name()) || acquirerIMF.getTransactionType().equals(TransactionType.UPDATE_PROFILE.name())){
 		    Cardholder cardholder = new Cardholder();
 		    acquirerIMF.setCardholder(cardholder);
-		    
+		    cardholder.setMembershipId(httpMsg.getProfile().getMembershipId());
 		    cardholder.setFirstName(httpMsg.getProfile().getFirstName());
 		    cardholder.setLastName(httpMsg.getProfile().getLastName());
 		    cardholder.setPhoneNumber(httpMsg.getProfile().getPhoneNumber());
@@ -93,7 +93,6 @@ public class HttpSpecification implements IAcquirerSpec {
 		    cardholder.setCity(httpMsg.getProfile().getCity());
 		    cardholder.setState(httpMsg.getProfile().getState());
 		    cardholder.setCountry(httpMsg.getProfile().getCountry());
-	    	
 	    }
 	    
 	    //TODO - probably need to populate the pan number using track 2 data.
@@ -148,6 +147,7 @@ public class HttpSpecification implements IAcquirerSpec {
 		if(acquirerIMF.getCardholder()!=null){
 			Profile profile = new Profile();
 			responseMsg.setProfile(profile);
+			profile.setMembershipId(acquirerIMF.getCardholder().getMembershipId());
 			profile.setFirstName(acquirerIMF.getCardholder().getFirstName());
 			profile.setLastName(acquirerIMF.getCardholder().getLastName());
 			profile.setEmail(acquirerIMF.getCardholder().getEmail());
