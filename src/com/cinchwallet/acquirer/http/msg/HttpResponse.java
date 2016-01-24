@@ -2,6 +2,8 @@ package com.cinchwallet.acquirer.http.msg;
 
 import java.util.List;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
 import org.codehaus.jackson.map.annotate.JsonSerialize;
 
 

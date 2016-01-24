@@ -2,6 +2,9 @@ package com.cinchwallet.acquirer.http.msg;
 
 import java.util.Date;
 
+import javax.xml.bind.annotation.XmlRootElement;
+
+
 public class HttpRequest {
 	//common fields
     private String merchantID;
