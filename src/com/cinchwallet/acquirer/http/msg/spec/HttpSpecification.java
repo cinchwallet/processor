@@ -78,6 +78,7 @@ public class HttpSpecification implements IAcquirerSpec {
 	    acquirerIMF.setTxnPoints(httpMsg.getTxnPoint());
 	    acquirerIMF.setNewCardNumber(httpMsg.getNewCardNumber());
 	    acquirerIMF.setPhoneNumber(httpMsg.getPhoneNumber());
+	    acquirerIMF.setPromoCode(httpMsg.getPromoCode());
 	    if(acquirerIMF.getTransactionType().equals(TransactionType.USR_REG.name()) || acquirerIMF.getTransactionType().equals(TransactionType.UPDATE_PROFILE.name())){
 		    Cardholder cardholder = new Cardholder();
 		    acquirerIMF.setCardholder(cardholder);

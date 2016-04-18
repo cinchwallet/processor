@@ -2,8 +2,6 @@ package com.cinchwallet.acquirer.http.msg;
 
 import java.util.Date;
 
-import javax.xml.bind.annotation.XmlRootElement;
-
 
 public class HttpRequest {
 	//common fields
@@ -29,6 +27,9 @@ public class HttpRequest {
     private String newCardNumber;
     //loyalty by phone number
     private String phoneNumber;
+    
+    //transaction done using promo code
+    private String promoCode;
     
     private String userName;
     private String password;
@@ -169,6 +170,16 @@ public class HttpRequest {
 	public void setNewCardNumber(String newCardNumber) {
 		this.newCardNumber = newCardNumber;
 	}
+	
+	
+
+	public String getPromoCode() {
+		return promoCode;
+	}
+
+	public void setPromoCode(String promoCode) {
+		this.promoCode = promoCode;
+	}
 
 	@Override
     public String toString() {
@@ -186,6 +197,7 @@ public class HttpRequest {
 	valueBuff.append(profile==null?"":", profile=" + profile);
 	valueBuff.append(noOfTrans==null?"":", noOfTrans=" + noOfTrans);
 	valueBuff.append(newCardNumber==null?"":", newCardNumber=" + newCardNumber);
+	valueBuff.append(promoCode==null?"":", promoCode=" + promoCode);
 	return valueBuff.toString();
     }
 

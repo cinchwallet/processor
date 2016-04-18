@@ -77,6 +77,7 @@ public class IMFResponseCodes {
     public static final String MERCHANT_INACTIVE                                           = "346";
     public static final String INV_ONEINC_NUMBER                                           = "347";
     public static final String ONEINC_NUMBER_UNASSIGNED                                    = "348";
+    public static final String INV_PROMOCODE                                           = "349";
 
     public static final String CRES_DC_REFER_TO_CARD_ISSER                                 = "501";
     public static final String CRES_DC_REFER_TO_CARD_ISSUER_SPECIAL                        = "502";

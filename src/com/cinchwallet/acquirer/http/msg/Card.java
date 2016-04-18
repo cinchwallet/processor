@@ -50,6 +50,11 @@ public class Card {
 	public void setPointExpireOn(Date pointExpireOn) {
 		this.pointExpireOn = pointExpireOn;
 	}
+	@Override
+	public String toString() {
+		return "Card [cardNumber=" + cardNumber + ", status=" + status + ", balance=" + balance + ", points=" + points
+				+ ", pointExpireOn=" + pointExpireOn + ", membershipId=" + membershipId + "]";
+	}
 
 
 

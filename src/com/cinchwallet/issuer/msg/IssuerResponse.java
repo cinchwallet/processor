@@ -14,6 +14,7 @@ public class IssuerResponse {
 	private String pointsExpireOn;
 	private Card card;
 	private CardHolder cardHolder;
+	private String membershipId;
 	
 	public String getResponseMsg() {
 		return responseMsg;
@@ -77,6 +78,14 @@ public class IssuerResponse {
 
 	public void setCardHolder(CardHolder cardHolder) {
 		this.cardHolder = cardHolder;
+	}
+
+	public String getMembershipId() {
+		return membershipId;
+	}
+
+	public void setMembershipId(String membershipId) {
+		this.membershipId = membershipId;
 	}
 
 	public static IssuerResponse getInstance(String jsonStr) {

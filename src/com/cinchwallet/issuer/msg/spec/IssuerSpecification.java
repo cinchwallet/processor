@@ -56,6 +56,9 @@ public class IssuerSpecification implements IProcessorSpecification {
 		if(processorRequestIMF.getPhoneNumber()!=null){
 			request.append(",\"phoneNumber\":\"").append(processorRequestIMF.getPhoneNumber()).append("\"");
 		}
+		if(processorRequestIMF.getPromoCode()!=null){
+			request.append(",\"promoCode\":\"").append(processorRequestIMF.getPromoCode()).append("\"");	
+		}
 		if (processorRequestIMF.getTransactionType().equals(TransactionType.USR_REG.name()) ||
 				processorRequestIMF.getTransactionType().equals(TransactionType.UPDATE_PROFILE.name())) {
 			request.append(",\"cardHolder\":");
@@ -158,6 +161,11 @@ public class IssuerSpecification implements IProcessorSpecification {
 		processorRequestIMF.setPointExpireOn(response.getPointsExpireOn());
 		processorRequestIMF.setResultCd(response.getResponseCode());
 		processorRequestIMF.setDisplayMessage(response.getResponseMsg());
+		if(response.getMembershipId()!=null){
+			Cardholder cardholder = new Cardholder();
+			processorRequestIMF.setCardholder(cardholder);
+			cardholder.setMembershipId(response.getMembershipId());
+		}
 		if(response.getCardHolder()!=null){
 			//populate card holder data
 			Cardholder cardholder = new Cardholder();

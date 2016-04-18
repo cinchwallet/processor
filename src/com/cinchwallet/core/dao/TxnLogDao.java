@@ -91,6 +91,7 @@ public class TxnLogDao {
 	private Integer txnPoints;
 	private String newCardNumber;
 	private String phoneNumber;
+	private String promoCode;
 
     public static final String INSERT_STR     = "INSERT INTO TXN_LOG( " + "  txn_id, leg, pan, pan_hint, txn_amount," + "  dt_transmission, stan,dt_transaction,approval_cd,reason_cd," + "  result_cd,tid,mid,transaction_type) " + "  VALUES"
 	                                              + " (?,?,?,?,?," + " ?,?,?,?,?," + " ?,?,?,?" + ")";
@@ -687,6 +688,14 @@ public class TxnLogDao {
 
 	public void setPhoneNumber(String phoneNumber) {
 		this.phoneNumber = phoneNumber;
+	}
+
+	public String getPromoCode() {
+		return promoCode;
+	}
+
+	public void setPromoCode(String promoCode) {
+		this.promoCode = promoCode;
 	}
 
 	

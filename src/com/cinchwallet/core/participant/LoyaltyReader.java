@@ -9,7 +9,6 @@ import org.jpos.transaction.TransactionParticipant;
 
 import com.cinchwallet.core.TransContext;
 import com.cinchwallet.core.TxnMsg;
-import com.cinchwallet.core.constant.SwitchConstants;
 import com.cinchwallet.core.dao.LoyaltyDao;
 import com.cinchwallet.core.msg.IMFResponseCodes;
 import com.cinchwallet.core.utils.CWLogger;

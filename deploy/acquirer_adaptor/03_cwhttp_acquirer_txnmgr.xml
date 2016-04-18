@@ -55,6 +55,10 @@
 			class="com.cinchwallet.core.participant.PointCalculator" logger="Q2"
 			realm="acquirer-to-processor">
 		</participant>
+		<participant
+			class="com.cinchwallet.core.participant.PromoOfferValidator" logger="Q2"
+			realm="acquirer-to-processor">
+		</participant>
 	</group>
 	
 
@@ -91,6 +95,12 @@
 
 	<participant class="com.cinchwallet.core.acquirer.participant.HTTPReply"
 		logger="Q2" realm="acquirer-reply">
+	</participant>
+
+	<participant class="com.cinchwallet.core.participant.MarkOfferComplete"
+		logger="Q2" realm="acquirer-reply">
+			<property name="service-requestor" value="cw-issuer-client-0" />
+            <property name="response-timeout" value="6000"/>
 	</participant>
 
 </cw-http-acquirer-version1.0-txnmgr>
